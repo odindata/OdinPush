@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.vendored_frameworks = 'OdinPush/Core/OdinPush.framework'
-
+  s.compiler_flags          = '-ObjC', '-all_load'
   # s.resource_bundles = {
   #   'OdinPush' => ['OdinPush/Assets/*.png']
   # }
