@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.vendored_frameworks = 'OdinPush/Core/OdinPush.framework'
+  s.module_map = 'OdinPush/Core/OdinPush.framework/Modules/module.modulemap'
   s.compiler_flags          = '-ObjC', '-all_load'
   s.libraries = 'c++', 'z'
   # s.resource_bundles = {
