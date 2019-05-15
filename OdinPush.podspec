@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OdinPush'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = '奥丁推送SDK'
 
   s.description      = <<-DESC
@@ -19,15 +19,7 @@ Pod::Spec.new do |s|
   s.platform = :ios
   s.ios.deployment_target = '8.0'
 
-  s.vendored_frameworks = 'OdinPush/Core/OdinPush.framework'
-  s.module_map = 'OdinPush/Core/OdinPush.framework/Modules/module.modulemap'
+  s.vendored_frameworks = 'OdinPush/Core/OdinPushSDK.framework'
   s.compiler_flags          = '-ObjC', '-all_load'
   s.libraries = 'c++', 'z'
-  # s.resource_bundles = {
-  #   'OdinPush' => ['OdinPush/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

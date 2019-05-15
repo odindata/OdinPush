@@ -1,6 +1,0 @@
-framework module OdinPush {
-  umbrella header "OdinPushHeaders.h"
-
-  export *
-  module * { export * }
-}
