@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks = 'OdinPush/Core/OdinPush.framework'
   s.compiler_flags          = '-ObjC', '-all_load'
+  s.libraries = 'c++', 'z'
   # s.resource_bundles = {
   #   'OdinPush' => ['OdinPush/Assets/*.png']
   # }
