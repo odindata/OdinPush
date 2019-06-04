@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OdinPush'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = '奥丁推送SDK'
 
   s.description      = <<-DESC
@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.vendored_frameworks = 'OdinPush/Core/OdinPushSDK.framework'
-  s.compiler_flags          = '-ObjC', '-all_load'
+  s.compiler_flags          = '-ObjC'
   s.libraries = 'c++', 'z'
 end
