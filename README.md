@@ -95,17 +95,17 @@ $ pod repo update
 
 <h1 id="appkeyconfig">3.配置AppKey和AppSecret</h1>  
 
-在工程的**info.plist**进行配置，AppKey对应plist的key是**ODINAppKey**，AppSecret对应plist的key是**ODINAppSecret**，二者都是string类型。
+在工程的**info.plist**进行配置，AppKey对应plist的key是**OdinKey**，AppSecret对应plist的key是**OdinSecret**，二者都是string类型。
 
 ```
-<key>ODINAppKey</key>  
+<key>OdinKey</key>  
 <string>填写你自己申请的AppKey</string>  
-<key>ODINAppSecret</key>  
+<key>OdinSecret</key>  
 <string>填写你自己申请的AppSecret</string>  
 ```
 
 <p align="center">
-  <img src="https://github.com/BaconTimes/files/blob/master/images/odinpushprojinfo.jpg?raw=true" alt="OdinPush_info.plist" title="info.plist">
+  <img src="https://github.com/BaconTimes/files/blob/master/images/odinpushprojinfo.png?raw=true" alt="OdinPush_info.plist" title="info.plist">
 </p>
 
 #### 网络请求权限配置  
@@ -288,7 +288,7 @@ _pushDelegation = [[PushDelegation alloc] init];
 
 ```
 + (NSString *)OdinPushPath {
-    return [NSString stringWithFormat:@"/path/%@", NSStringFromClass(self)];
+    return @"page1";
 }
 
 -(instancetype)initWithOdinPushScene:(NSDictionary *)params {
@@ -296,6 +296,9 @@ _pushDelegation = [[PushDelegation alloc] init];
     if (self) {
         if (params[@"title"]) {
             self.title = params[@"title"];
+        }
+        if (params[@"subtitle"]) {
+            NSLog(@"%@", params[@"subtitle"]);
         }
     }
     return self;
@@ -396,7 +399,6 @@ UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"
 而在奥丁数据开发者服务中心对应的是**创建推送**里面的**目标人群**，示例图如下：
 
 ![image](https://github.com/BaconTimes/files/blob/master/images/odinpushsetTarget.png?raw=true)
-
 
 
 
