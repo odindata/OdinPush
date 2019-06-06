@@ -1,6 +1,6 @@
 # OdinPush
 ![Build Status](https://travis-ci.org/AFNetworking/AFNetworking.svg)
-![Build Status](https://img.shields.io/badge/pod-0.0.5-blue.svg)
+![Build Status](https://img.shields.io/badge/pod-0.0.6-blue.svg)
 ![Build Status](https://img.shields.io/badge/platform-iOS-dark.svg)
 
 ### OdinPush是一个iOS的远程推送库，集成简单且功能丰富。  
@@ -84,7 +84,7 @@ $ pod repo update
 ```
 <h1 id="appkey">2.申请AppKey和AppSecret</h1>  
 
-在[奥丁数据开发者服务中心](http://www.stfukeyy.com)申请并获得PushSDK的**AppKey**和**AppSecret**。
+在[奥丁数据开发者服务中心](http://www.stfukeyy.com)申请并获得OdinPush的**AppKey**和**AppSecret**。
 
 ![image](https://github.com/BaconTimes/files/blob/master/images/odinpushappinfo.png?raw=true)
 
@@ -204,7 +204,7 @@ config.types = (OPushAuthorizationOptionsSound|OPushAuthorizationOptionsAlert|OP
 
 <h2 id="fontpushset">7.1 App前台通知权限配置</h2>  
 
-在iOS10之前，app在前台的环境下，是无法展示通知的，但是在iOS之后，可以通过UNUserNotification框架来设置前台展示的权限。 开发者需要一个类遵守UNUserNotificationCenterDelegate协议，然后初始化的时候设置代理，并实现对应的协议方法即可，下面的代码是以**PushDelegation**为例，开发者在 
+在iOS10之前，app在前台的环境下，是无法展示通知的，但是在iOS之后，可以通过UNUserNotification框架来设置前台展示的权限。 开发者需要一个类遵守UNUserNotificationCenterDelegate协议，然后初始化的时候设置代理，并实现对应的协议方法即可，下面的代码是以**PushDelegation类**为例，开发者在 
 **userNotificationCenter: willPresentNotification: withCompletionHandler:**
 方法中调用**completionHandler**，针对不同的情况来判断是否展示和怎么展示前台通知； 由于OdinPush内部实现了该方法，如果开发者没有实现该方法，那么OdinPush的回调就是  
 
@@ -305,9 +305,13 @@ _pushDelegation = [[PushDelegation alloc] init];
 }
 ```
 
-在奥丁数据开发者服务中心的配置：**PushSDK -> 创建推送 -> 通知推送 -> 后续动作**，选择**应用内跳转**，在scheme地址中，添加上面代码中OdinPushPath返回的参数，而下面的参数的键值对，则对应上面初始化方法的params字典里面的键值对。  
+在奥丁数据开发者服务中心的配置：**PushSDK -> 创建推送 -> 通知推送 -> 后续动作**，选择“**应用内跳转**”，
+在scheme地址中填写的参数，添加上面代码中OdinPushPath返回的参数，而下面的参数的键值对，则对应上面初始化方法的params，客户端在接受到该通知之后，点击该通知即可跳转对应的界面，对应的参数也会传递进去。
 
-客户端在接受到该通知之后，点击该通知即可跳转对应的界面，对应的参数也会传递进去，下面的是示例图：
+#### 注意！！！  
+开发者需要在代码中提前设置，比如开发者根据需求，配置了5个界面，那么每个界面的+(NSString *)OdinPushPath返回值都必须不一样，并记录下来，在后台创建推送时，跳转哪个界面，就填写那个界面对应的+(NSString *)OdinPushPath返回值。
+
+上面的代码与下面的示例图是相对应的： 
 
 ![image](https://github.com/BaconTimes/files/blob/master/images/odinpushpagetransfer.png?raw=true)
 
@@ -343,6 +347,35 @@ UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"
 新添加的Extension是以target形式添加到工程中的，因为是新的target，所以bundle Identifier不能与项目的工程的bundle Identifier一致，且需要给其配置对应的provision file。
 
 添加成功后，系统会自动生成NotificationService对应的.h和.m文件。
+
+使用OdinPush下载媒体文件，分2种情况：  
+1. 手动集成  
+**选中OdinPush.framework**，查看Xcode右侧的文件信息的**Target Membership**，可以看到2个target，一个是app的项目，还有一个就是刚才添加的Notification Service Extension对应的target，然后点击选中该target，至此就已经将OdinPush.framework添加到新的target中，然后可以导入头文件使用，示例图如下所示： 
+
+![image](https://github.com/BaconTimes/files/blob/master/images/odinpushselfextintegrate.png?raw=true)
+
+2. CocoaPod集成
+添加新的target之后，需要在Podfile里面添加对应的target，并将pod 'OdinPush'加到对应的target中，下面是示例配置，请将target改成开发者自己设置的target name：
+
+```
+target 'OdinPushDemo' do
+	pod 'OdinPush'
+end
+
+target 'PushService' do
+	pod 'OdinPush'
+end
+```
+
+添加完成后，再执行pod install即可。
+
+示例代码如下:  
+导入头文件  
+
+```
+#import <OdinPushSDK/OdinPushSDK.h>
+```
+
 使用OdinPush下载媒体文件示例代码如下：
 
 ```
