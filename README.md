@@ -208,13 +208,13 @@ config.types = (OPushAuthorizationOptionsSound|OPushAuthorizationOptionsAlert|OP
 **userNotificationCenter: willPresentNotification: withCompletionHandler:**
 方法中调用**completionHandler**，针对不同的情况来判断是否展示和怎么展示前台通知； 由于OdinPush内部实现了该方法，如果开发者没有实现该方法，那么OdinPush的回调就是  
 
-```
+```objective-c
 completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound)。
 ```
 
 PushDelegation.m代码
 
-```
+```objective-c
 @interface PushDelegation () <UNUserNotificationCenterDelegate>
 @end
 
@@ -242,7 +242,7 @@ PushDelegation.m代码
 
 在Appdelegate.m中，导入头文件，添加字段，并在application: didFinishLaunchingWithOptions: 初始化即可。
 
-```
+```objective-c
 @property (nonatomic, strong) PushDelegation *pushDelegation;
 
 _pushDelegation = [[PushDelegation alloc] init];
@@ -253,7 +253,7 @@ _pushDelegation = [[PushDelegation alloc] init];
 该功能的实现，需要在奥丁数据开发者服务中心配置和客户端代码的添加。  
 客户端代码如下：  
 
-```
+```objective-c
 [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(pushMessage:) name:OdinPushDidReceiveMessageNotification object:nil];
 
 - (void)pushMessage:(NSNotification *)noti {
@@ -280,13 +280,13 @@ _pushDelegation = [[PushDelegation alloc] init];
 该功能的实现，需要在奥丁数据开发者服务中心配置和客户端代码的配置。
 在需要跳转的UIViewController里面导入  
 
-```
+```objective-c
 #import <OdinPushSDK/UIViewController+OdinPush.h>
 ```
 
 在implementation里面重写刚导入的分类的2个方法，如下所示
 
-```
+```objective-c
 + (NSString *)OdinPushPath {
     return @"page1";
 }
@@ -325,7 +325,7 @@ _pushDelegation = [[PushDelegation alloc] init];
 ##### 本地通知实现富媒体通知  
 示例代码如下：
 
-```
+```objective-c
 UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
 NSString *path = [NSBundle.mainBundle pathForResource:@"youth" ofType:@"jpeg"];
 UNNotificationAttachment *attachment = [UNNotificationAttachment attachmentWithIdentifier:@"ident" URL:[NSURL fileURLWithPath:path] options:nil error:nil];
@@ -359,11 +359,11 @@ UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"
 
 ```
 target 'OdinPushDemo' do
-	pod 'OdinPush'
+  pod 'OdinPush'
 end
 
 target 'PushService' do
-	pod 'OdinPush'
+  pod 'OdinPush'
 end
 ```
 
@@ -372,13 +372,13 @@ end
 示例代码如下:  
 导入头文件  
 
-```
+```objective-c
 #import <OdinPushSDK/OdinPushSDK.h>
 ```
 
 使用OdinPush下载媒体文件示例代码如下：
 
-```
+```objective-c
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
@@ -419,14 +419,14 @@ end
 
 ###### 别名API
 
-```
+```objective-c
 + (void)getAliasWithResult:(void (^) (NSString *alias, NSError *error))handler;
 + (void)setAlias:(NSString *)alias result:(void (^) (NSError *error))handler;
 + (void)deleteAlias:(void (^) (NSError *error))handler;
 ```
 ###### 获取RegistrationID API
 
-```
+```objective-c
 + (void)getRegistrationID:(void(^)(NSString *registrationID, NSError *error))handler;
 ```
 而在奥丁数据开发者服务中心对应的是**创建推送**里面的**目标人群**，示例图如下：
