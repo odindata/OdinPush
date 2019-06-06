@@ -410,7 +410,7 @@ end
 在OdinPush的**OdinPush.h**里面可以看到**设置标签**的四个API和**设置别名**的三个API，开发者可以通过这几个API，根据用户不同的属性添加不同的标签和别名；开发者在SDK初始化成功后，就能获取**RegistrationID**。
 ###### 标签API
 
-```
+```objective-c
 + (void)getTagsWithResult:(void (^) (NSArray *tags, NSError *error))handler;
 + (void)addTags:(NSArray<NSString *> *)tags result:(void (^) (NSError *error))handler;
 + (void)deleteTags:(NSArray<NSString *> *)tags result:(void (^) (NSError *error))handler;
