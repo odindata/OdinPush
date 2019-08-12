@@ -2,14 +2,14 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OdinPush'
-  s.version          = '0.0.9'
+  s.version          = '0.1.0'
   s.summary          = '奥丁推送SDK'
 
   s.description      = <<-DESC
   奥丁推送SDK, 几行代码实现远程推送
                        DESC
 
-  s.homepage         = 'https://github.com/odindata/OdinPush.git'
+  s.homepage         = 'https://github.com/odindata/OdinPush'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bacon' => 'baconli@foxmail.com' }
