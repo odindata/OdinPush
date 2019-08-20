@@ -1,6 +1,6 @@
 # OdinPush
 ![Build Status](https://travis-ci.org/AFNetworking/AFNetworking.svg)
-![Build Status](https://img.shields.io/badge/pod-0.1.1-blue.svg)
+![Build Status](https://img.shields.io/badge/pod-0.1.2-blue.svg)
 ![Build Status](https://img.shields.io/badge/platform-iOS-dark.svg)
 
 ### OdinPush是一个iOS的远程推送库，集成简单且功能丰富。  
