@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OdinPush'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = '奥丁推送SDK'
 
   s.description      = <<-DESC
