@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OdinPush'
-  s.version          = '0.1.8'
+  s.version          = '0.2.0'
   s.summary          = '奥丁推送SDK'
 
   s.description      = <<-DESC
@@ -22,4 +22,6 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = 'OdinPush/Core/OdinPushSDK.framework'
   s.compiler_flags          = '-ObjC'
   s.libraries = 'c++', 'z'
+  s.dependency "OdinDomainSecurity", "~> 0.1.0"
+
 end
